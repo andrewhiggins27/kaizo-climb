@@ -43,7 +43,7 @@ const HackTile = props => {
           aria-expanded={open}
           variant="light"
         >
-          Click for Description
+          Expand Description
         </Button>
         <Collapse in={open}>
           <div id="description-card-text">
