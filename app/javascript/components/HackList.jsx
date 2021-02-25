@@ -1,8 +1,58 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import HackTile from './HackTile'
+import Pagination from './Pagination'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row'
 
 const HackList = props => {
+  const [hacks, setHacks] = useState([])
+  const [pageData, setPageData] = useState( {page: null, totalPage: null} )
+
+  useEffect(() => {
+    let pageId = props.match.params.id
+    fetch(`/api/v1/hacklist/${pageId}`, {
+      credentials: 'same-origin'
+    })
+    .then(response => {
+      if (response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw (error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      setHacks(body.hacks)
+      setPageData({page: body.page_number, totalPage: body.total_pages})
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }, [props.match.params.id])
+
+  const HackTiles = hacks.map((hack) => {
+    return(
+      <HackTile
+        key={hack.id}
+        hack={hack}
+      >
+      </HackTile>
+    )
+  })
+
   return(
-    <div>HackList</div>
+    <Container>
+      <Row className="justify-content-md-center">
+        {HackTiles}
+      </Row>
+      <Row>
+        <Pagination
+          currentPage={pageData.page}
+          totalPage={pageData.totalPage}
+          url="hacklist"
+        />
+      </Row>
+    </Container>
   )
 }
 

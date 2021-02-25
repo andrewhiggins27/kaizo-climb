@@ -34,3 +34,16 @@
   width: 100%;
   opacity: 0.4;
 }
+
+.smw-central-logo {
+  border-color: #293241;
+  border-width: .1rem;
+  border-style: solid;
+  width: 7rem;
+  margin-top: .5rem;
+  float: right;
+}
+
+.smw-central-logo:hover {
+    opacity: .33;
+}
