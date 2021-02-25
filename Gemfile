@@ -43,3 +43,5 @@ gem 'faraday'
 gem 'nokogiri'
 gem 'httparty'
 gem 'mechanize'
+gem 'will_paginate', '~> 3.1.0'
+gem "active_model_serializers"
