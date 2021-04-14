@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a WIP React frontend app with a Rails API backend. This app was created purely for portfolio/practice.
 
-Things you may want to cover:
+The goal is to allow users to map and keep track of their over-arching journey through difficult Super Mario World romhacks.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Database of romhacks created by scraping the html from SMWCentral.net. This project would be impossible to make without that incredible resource. If you happen to stumble across this repo and are interested in learning more about SMW romhacking, SMWCentral.net is the hub of it all.
