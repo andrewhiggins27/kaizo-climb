@@ -73,7 +73,7 @@ const HackShow = (props) => {
             Last Update/Release: {hack.date}
           </Card.Title>
           <Button
-          onClick={() => setOpen(!open)}b
+          onClick={() => setOpen(!open)}
           aria-controls="description-card-text"
           aria-expanded={open}
           variant="light"

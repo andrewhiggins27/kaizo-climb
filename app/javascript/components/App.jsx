@@ -13,6 +13,8 @@ import HackShow from "../components/HackShow";
 import NavBar from "../components/NavBar";
 import LogIn from "../components/LogIn";
 import Registration from "../components/auth/Registration";
+import ListIndex from "./ListIndex";
+import ListShow from "./ListShow";
 
 class App extends Component {
   constructor(props) {
@@ -46,13 +48,16 @@ class App extends Component {
         if (body.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
           this.setState({
             loggedInStatus: "LOGGED_IN",
-            user: body.user
-          })
-        } else if (!body.logged_in && this.state.loggedInStatus === "LOGGED_IN") {
+            user: body.user,
+          });
+        } else if (
+          !body.logged_in &&
+          this.state.loggedInStatus === "LOGGED_IN"
+        ) {
           this.setState({
             loggedInStatus: "NOT_LOGGED_IN",
-            user: {}
-          })
+            user: {},
+          });
         }
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
@@ -94,7 +99,27 @@ class App extends Component {
                   <Home {...props} loggedInStatus={this.state.loggedInStatus} />
                 )}
               />
-              <Route path="/hacklist/:id" exact component={HackList} />
+              <Route
+                path="/:userId/journeys"
+                exact
+                render={(props) => (
+                  <ListIndex {...props} user={this.state.user} />
+                )}
+              />
+              <Route
+                path="/:userId/journeys/:listId"
+                exact
+                render={(props) => (
+                  <ListShow {...props} user={this.state.user} />
+                )}
+              />
+              <Route
+                path="/hacklist/:id"
+                exact
+                render={(props) => (
+                  <HackList {...props} user={this.state.user} />
+                )}
+              />
               <Route path="/hack/:id" exact component={HackShow} />
               <Route
                 path="/login"

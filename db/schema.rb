@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_173106) do
+ActiveRecord::Schema.define(version: 2021_04_15_175122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 2021_04_06_173106) do
     t.string "url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "list_id"
+    t.index ["list_id"], name: "index_hacks_on_list_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title"
+    t.string "ordered_ids", array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "screenshots", force: :cascade do |t|

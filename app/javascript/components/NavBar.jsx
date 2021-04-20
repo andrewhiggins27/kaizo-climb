@@ -57,7 +57,7 @@ const NavBar = (props) => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/hacklist/1">Browse All Kaizo Hacks</Nav.Link>
-          <Nav.Link href="#temp">Temp Link</Nav.Link>
+          <Nav.Link href={`/${props.user.id}/journeys`}>View My Journeys</Nav.Link>
           <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">

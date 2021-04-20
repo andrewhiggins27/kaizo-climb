@@ -65,6 +65,7 @@ const LogIn = (props) => {
             placeholder="Enter email"
             name="email"
             onChange={handleChange}
+            value={loginForm.email}
           />
           <Form.Text className="text-muted">
             We'll only share your email with legitimate Nigerian princes
@@ -78,6 +79,7 @@ const LogIn = (props) => {
             placeholder="Password"
             name="password"
             onChange={handleChange}
+            value={loginForm.password}
           />
         </Form.Group>
 
