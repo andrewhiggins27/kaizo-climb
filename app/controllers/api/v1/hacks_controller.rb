@@ -45,4 +45,12 @@ class Api::V1::HacksController < ApplicationController
 
     render json: {list: list, hacks: hack_list_serialized}
   end
+
+  def search
+    hacks = Hack.search_by_term(params[:query])    
+
+    hack_list_serialized = hacks.map { |hack| HackSerializer.new(hack).as_json}
+
+    render json: {hacks: hack_list_serialized}
+  end
 end

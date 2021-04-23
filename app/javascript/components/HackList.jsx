@@ -3,6 +3,7 @@ import HackTile from "./HackTile";
 import Pagination from "./Pagination";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import HackSearch from "./HackSearch";
 
 const HackList = (props) => {
   const [hacks, setHacks] = useState([]);
@@ -56,6 +57,25 @@ const HackList = (props) => {
     }
   }, [props.user]);
 
+  const handleSearchQuery = (query) => {
+    fetch(`/api/v1/hacks/search/${query}`)
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw error;
+      }
+    })
+    .then((response) => response.json())
+    .then((body) => {
+      setPageData({ page: null, totalPage: null })
+      setHacks(body.hacks)
+    })
+    .catch((error) => console.error(`Error in fetch: ${error.message}`));
+  }
+
   const HackTiles = hacks.map((hack) => {
     return (
       <HackTile
@@ -70,6 +90,7 @@ const HackList = (props) => {
 
   return (
     <Container>
+    <HackSearch handleSearchQuery={handleSearchQuery}/>
       <Row className="justify-content-md-center">{HackTiles}</Row>
       <Row>
         <Pagination

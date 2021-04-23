@@ -47,3 +47,4 @@ gem 'will_paginate', '~> 3.1.0'
 gem "active_model_serializers"
 gem 'bcrypt'
 gem 'rack-cors'
+gem 'pg_search'
