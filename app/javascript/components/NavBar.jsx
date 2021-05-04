@@ -50,26 +50,31 @@ const NavBar = (props) => {
     <NavDropdown.Item onClick={handleLogoutClick}>Logout</NavDropdown.Item>
   </NavDropdown>;
 
+  let navLinks;
+
+  if (props.user.id) {
+    navLinks = (
+      <>
+        <Nav.Link href="/hacklist/1">Browse All Kaizo Hacks</Nav.Link>
+        <Nav.Link href={`/${props.user.id}/journeys`}>
+          View My Journeys
+        </Nav.Link>
+      </>
+    );
+  } else {
+    navLinks = (
+      <>
+        <Nav.Link href="/hacklist/1">Browse All Kaizo Hacks</Nav.Link>
+      </>
+    );
+  }
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="/">Kaizo Climb </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="/hacklist/1">Browse All Kaizo Hacks</Nav.Link>
-          <Nav.Link href={`/${props.user.id}/journeys`}>View My Journeys</Nav.Link>
-          <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
+        <Nav className="mr-auto">{navLinks}</Nav>
         <Nav>{sessionLinks}</Nav>
       </Navbar.Collapse>
     </Navbar>

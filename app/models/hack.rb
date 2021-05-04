@@ -1,7 +1,7 @@
 class Hack < ApplicationRecord
-  include PgSearch
-
-  pg_search_scope :search_by_term, against: [:name],
+  include PgSearch::Model
+  
+  multisearchable against: [:name],
     using: {
       tsearch: {
         any_word: true,

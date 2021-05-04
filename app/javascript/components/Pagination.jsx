@@ -49,6 +49,10 @@ export const Pagination = (props) => {
       </li>
   }
 
+  if (!props.currentPage && !props.totalPage) {
+    return(<></>)
+  }
+
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
