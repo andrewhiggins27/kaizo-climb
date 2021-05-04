@@ -1,6 +1,8 @@
 class Api::V1::HacksController < ApplicationController
-  protect_from_forgery unless: -> { request.format.json? }
+  include PgSearch
 
+  protect_from_forgery unless: -> { request.format.json? }
+  
   def index
   end
 
@@ -47,9 +49,19 @@ class Api::V1::HacksController < ApplicationController
   end
 
   def search
-    hacks = Hack.search_by_term(params[:query])    
+    search_results = PgSearch.multisearch(params[:query])
+    results_hacks = []
 
-    hack_list_serialized = hacks.map { |hack| HackSerializer.new(hack).as_json}
+    search_results.each do |result|
+      if result[:searchable_type] == "Creator"
+        hacks = Creator.find(result[:searchable_id]).hacks
+        results_hacks.concat(hacks)
+      elsif result[:searchable_type] == "Hack"
+        results_hacks << Hack.find(result[:searchable_id])
+      end
+    end
+
+    hack_list_serialized = results_hacks.map { |hack| HackSerializer.new(hack).as_json}
 
     render json: {hacks: hack_list_serialized}
   end
