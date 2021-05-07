@@ -15,6 +15,7 @@ import LogIn from "../components/LogIn";
 import Registration from "../components/auth/Registration";
 import ListIndex from "./ListIndex";
 import ListShow from "./ListShow";
+import { CreatorShow } from "./CreatorShow";
 
 class App extends Component {
   constructor(props) {
@@ -121,6 +122,13 @@ class App extends Component {
                 )}
               />
               <Route path="/hack/:id" exact component={HackShow} />
+              <Route
+                path="/creators/:id"
+                exact
+                render={(props) => (
+                  <CreatorShow {...props} user={this.state.user} />
+                )}
+              />
               <Route
                 path="/login"
                 exact

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get ':userId/journeys', to: 'homepage#index'
   get ':userId/journeys/:listId', to: 'homepage#index'
+  get 'creators/:creatorId', to: 'homepage#index'
   get 'hacklist/:pageId', to: 'homepage#index'
   get 'hack/:pageId', to: 'homepage#index'
   get 'login', to: 'homepage#index'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
           patch "/position_change" => "lists#position_change"
         end
       end
+      resources :creators, only: [:show]
 
       get "hacklist/:id" => "hacks#pagination"
     end
