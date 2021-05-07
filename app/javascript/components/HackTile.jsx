@@ -20,13 +20,15 @@ const HackTile = (props) => {
   const handleDeleteConfirmShow = () => setDeleteConfirmOpen(true);
 
   const handleRemoveClick = () => {
-    props.handleRemoveClick(props.hack.id)
-  }
+    props.handleRemoveClick(props.hack.id);
+  };
 
   const creatorNames = props.hack.creators.map((creator) => {
     return (
       <Fragment key={creator.id}>
-        {creator.name} {"\n"}
+        <a href={`/creators/${creator.id}`}>
+          {creator.name} {"\n"}
+        </a>
       </Fragment>
     );
   });
@@ -84,25 +86,31 @@ const HackTile = (props) => {
 
     removeButton = (
       <>
-        <Trash onClick={handleDeleteConfirmShow} style={{float: "right"}}></Trash>
+        <Trash
+          onClick={handleDeleteConfirmShow}
+          style={{ float: "right" }}
+        ></Trash>
         <Modal
           show={deleteConfirmOpen}
           onHide={handleDeleteConfirmClose}
           backdrop="static"
           keyboard={false}
         >
-        <Modal.Header closeButton>
-          <Modal.Title>Remove Hack From Journey?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          This action will remove this hack from this journey. Hacks can be re-added anytime.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleDeleteConfirmClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleRemoveClick}>Understood</Button>
-        </Modal.Footer>
+          <Modal.Header closeButton>
+            <Modal.Title>Remove Hack From Journey?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            This action will remove this hack from this journey. Hacks can be
+            re-added anytime.
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleDeleteConfirmClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleRemoveClick}>
+              Understood
+            </Button>
+          </Modal.Footer>
         </Modal>
       </>
     );
@@ -111,12 +119,13 @@ const HackTile = (props) => {
   let addToListButton;
   if (props.allowAddToList) {
     addToListButton = (
+      <div className="float-right">
       <AddToListButton
-        style={{ float: "right" }}
         user={props.user}
         hackId={props.hack.id}
         lists={props.lists}
       />
+      </div>
     );
   }
 
@@ -129,15 +138,16 @@ const HackTile = (props) => {
           <Card.Title>
             <Link to={`/hack/${props.hack.id}`}>{props.hack.name}</Link>
           </Card.Title>
-          <Card.Subtitle>{creatorNames}</Card.Subtitle>
+          <Card.Subtitle>Created by: {creatorNames}</Card.Subtitle>
           <Card.Subtitle style={{ paddingTop: ".5rem" }}>
             {props.hack.length}
           </Card.Subtitle>
+          <br></br>
           <Button
             onClick={() => setOpen(!open)}
             aria-controls="description-card-text"
             aria-expanded={open}
-            variant="light"
+            variant="dark"
           >
             Expand Description
           </Button>

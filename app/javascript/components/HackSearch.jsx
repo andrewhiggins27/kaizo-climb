@@ -17,7 +17,7 @@ const HackSearch = (props) => {
   }
 
   return (
-    <Form inline onSubmit={handleSubmit}>
+    <Form inline onSubmit={handleSubmit}  className="hack-search-bar">
       <Form.Group>
         <Form.Control
           placeholder="Search for Hack"
@@ -25,7 +25,7 @@ const HackSearch = (props) => {
           value={form}
         />
       <Button variant="secondary" type="submit">
-        Submit
+        Search
       </Button>
       </Form.Group>
     </Form>

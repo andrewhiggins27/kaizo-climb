@@ -19,6 +19,7 @@ const ListCreate = (props) => {
       setFormErrors("Title can not be blank");
     } else {
       props.handleSubmit(form);
+      setForm("")
     }
   };
 

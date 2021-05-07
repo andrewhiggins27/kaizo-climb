@@ -47,3 +47,18 @@
 .smw-central-logo:hover {
     opacity: .33;
 }
+
+.add-to-journey-button {
+  margin-top: .2rem;
+  margin-bottom: .2rem;
+  float: right;
+}
+
+.description-card-text{
+  font-size: smaller;
+}
+
+.hack-search-bar{
+  margin-top: .1rem;
+  margin-bottom: .1rem;
+}
