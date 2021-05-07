@@ -26,7 +26,6 @@ export const CreatorShow = (props) => {
       })
       .then((response) => response.json())
       .then((body) => {
-        debugger;
         setCreator(body.creator);
         setHacks(body.hacks);
       })
