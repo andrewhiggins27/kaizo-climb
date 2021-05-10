@@ -65,4 +65,19 @@ class Api::V1::HacksController < ApplicationController
 
     render json: {hacks: hack_list_serialized}
   end
+
+  def completed_hack
+    user = User.find(params["user_id"])
+    hack = Hack.find(params["hack_id"])
+
+    if !user.completed_hack_ids.include?(hack.id.to_s)
+      user.completed_hack_ids << hack.id.to_s
+      user.save
+    else
+      user.completed_hack_ids.delete(hack.id.to_s)
+      user.save
+    end
+    
+    render json: {user: user}
+  end
 end

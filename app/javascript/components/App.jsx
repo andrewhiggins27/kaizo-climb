@@ -111,7 +111,7 @@ class App extends Component {
                 path="/:userId/journeys/:listId"
                 exact
                 render={(props) => (
-                  <ListShow {...props} user={this.state.user} />
+                  <ListShow {...props} user={this.state.user} handleLogin={this.handleLogin} />
                 )}
               />
               <Route
