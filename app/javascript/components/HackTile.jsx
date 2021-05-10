@@ -11,6 +11,7 @@ import ScreenshotCarousel from "./ScreenshotCarousel";
 import Modal from "react-bootstrap/Modal";
 
 import { BoxArrowRight, BoxArrowLeft, Trash } from "react-bootstrap-icons";
+import CompletionCheck from "./CompletionCheck";
 
 const HackTile = (props) => {
   const [open, setOpen] = useState(false);
@@ -50,6 +51,8 @@ const HackTile = (props) => {
 
   let positionControls = <> </>;
   let removeButton = <></>;
+  let completionCheck = <></>
+
   if (props.allowPositionChange) {
     if (props.position == 1) {
       positionControls = (
@@ -114,6 +117,8 @@ const HackTile = (props) => {
         </Modal>
       </>
     );
+
+    completionCheck = <CompletionCheck completed={props.hackCompleted} handleCompletionCheck={props.handleCompletionCheck} hackId={props.hack.id}/>
   }
 
   let addToListButton;
@@ -132,8 +137,10 @@ const HackTile = (props) => {
   return (
     <Col xs={12} md={6} lg={4} style={{ paddingBottom: ".5rem" }}>
       <Card>
+      <div className={props.hackCompleted ? "hack-tile-completed" : "hack-tile-incomplete"}>
         <Card.Body>
           {position}
+          {completionCheck}
           {removeButton}
           <Card.Title>
             <Link to={`/hack/${props.hack.id}`}>{props.hack.name}</Link>
@@ -158,6 +165,7 @@ const HackTile = (props) => {
         <ScreenshotCarousel screenshots={props.hack.screenshots} />
         {positionControls}
         {addToListButton}
+        </div>
       </Card>
     </Col>
   );

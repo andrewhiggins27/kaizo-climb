@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get "/hacks/search/:query" => "hacks#search"
+      patch "/completed_hack" => "hacks#completed_hack"
       resources :hacks, only: [:index, :show] do
         patch "/add_hack_to_list" => "hacks#add_hack_to_list"
         patch "/remove_hack_from_list" => "hacks#remove_hack_from_list"

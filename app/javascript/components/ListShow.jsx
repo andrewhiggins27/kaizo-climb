@@ -108,13 +108,48 @@ const ListShow = (props) => {
       setData(body);
     })
     .catch((error) => console.error(`Error in fetch: ${error.message}`));
+  }
 
+  const handleCompletionCheck = (hackId) => {
+    fetch(
+      `/api/v1/completed_hack`,
+      {
+        method: "PATCH",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: props.user.id,
+          hack_id: hackId
+        }),
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then((response) => response.json())
+      .then((body) => {
+        props.handleLogin(body.user)
+      })
+      .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }
 
   let hackTiles = <></>;
-  if (data.list.ordered_ids && data.list.ordered_ids.length > 0) {
+  if (data.list.ordered_ids && data.list.ordered_ids.length > 0 && data.hacks.length > 0) {
     hackTiles = data.list.ordered_ids.map((id, index) => {
       let hack = data.hacks.find((hack) => hack.id.toString() === id);
+      let hackCompleted = false
+      if (hack && props.user.completed_hack_ids.includes(hack.id.toString())) {
+        hackCompleted = true
+      }
+
       return (
         <HackTile
           key={hack.id}
@@ -124,6 +159,8 @@ const ListShow = (props) => {
           listLength={data.list.ordered_ids.length}
           handlePositionChange={handlePositionChange}
           handleRemoveClick={handleRemoveClick}
+          hackCompleted={hackCompleted}
+          handleCompletionCheck={handleCompletionCheck}
         />
       );
     });
