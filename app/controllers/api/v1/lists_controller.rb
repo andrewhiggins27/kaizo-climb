@@ -22,6 +22,14 @@ class Api::V1::ListsController < ApplicationController
     render json: {list: list, hacks: hack_list_serialized}
   end
 
+  def destroy
+    List.find(params[:id]).delete
+    user = User.find(params[:user_id])
+    lists = user.lists
+    
+    render json: {lists: lists}
+  end
+
   def position_change
     list = List.find(params[:list_id])
     list.ordered_ids = params["newOrderedList"]

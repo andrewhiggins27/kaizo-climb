@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         patch "/remove_hack_from_list" => "hacks#remove_hack_from_list"
       end
       resources :users, only: [:show] do
-        resources :lists, only: [:index, :show, :create, :update] do
+        resources :lists, only: [:index, :show, :create, :update, :destroy] do
           patch "/position_change" => "lists#position_change"
         end
       end

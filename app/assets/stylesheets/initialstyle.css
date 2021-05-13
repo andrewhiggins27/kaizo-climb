@@ -66,3 +66,7 @@
 .hack-tile-completed {
   background-color: rgba(0, 255, 0, .2);
 }
+
+.completed-list {
+  background-color: rgba(0, 255, 0, .2);
+}
