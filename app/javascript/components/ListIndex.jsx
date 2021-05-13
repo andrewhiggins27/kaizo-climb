@@ -58,10 +58,37 @@ const ListIndex = (props) => {
       });
   };
 
+  const handleRemoveList = (listId) => {
+    fetch(`/api/v1/users/${props.user.id}/lists/${listId}`, {
+      credentials: "same-origin",
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then((response) => response.json())
+      .then((body) => {
+        setLists(body.lists);
+      });
+  }
+
   let listTiles;
   if (lists.length > 0) {
     listTiles = lists.map((list) => {
-      return <ListTile key={list.id} list={list} />;
+      let completed = false
+      if (list.ordered_ids.every(id => props.user.completed_hack_ids.includes(id))) {
+        completed = true
+      }
+      return <ListTile key={list.id} list={list} completed={completed} handleRemoveList={handleRemoveList}/>;
     });
   }
 
