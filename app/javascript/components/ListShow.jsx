@@ -149,6 +149,10 @@ const ListShow = (props) => {
       if (hack && props.user.completed_hack_ids.includes(hack.id.toString())) {
         hackCompleted = true
       }
+      
+      if (!hack) {
+        return <></>
+      }
 
       return (
         <HackTile
