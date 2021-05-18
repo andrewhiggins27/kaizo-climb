@@ -54,7 +54,7 @@ def hack_scrape (url)
 end
 
 def smw_central_scrape
-  [1, 2, 3, 4, 5, 6].each do |n|
+  [1, 2, 3, 4, 5, 6, 7].each do |n|
     baseUrl = "https://www.smwcentral.net/?p=section&s=smwhacks&u=0&g=0&f%5Bdifficulty%5D%5B0%5D=107&n=#{n}&o=date&d=desc"
   
     html = HTTParty.get(baseUrl)
