@@ -81,7 +81,7 @@ const HackList = (props) => {
       <HackTile
         key={hack.id}
         hack={hack}
-        allowAddToList={true}
+        allowAddToList={props.user.id ? true : false}
         user={props.user}
         lists={userLists}
       ></HackTile>
@@ -97,11 +97,17 @@ const HackList = (props) => {
   }
 
   return (
-    <Container>
-      <HackSearch handleSearchQuery={handleSearchQuery} />
+    <Container className="hack-list">
+      <Row className="ml-1">
+        <h2 className="hack-list-title">The Hack List:</h2>
+        <div className="hack-search-bar ml-auto mr-3">
+          <HackSearch handleSearchQuery={handleSearchQuery} />
+        </div>
+      </Row>
       <Row className="justify-content-md-center">{HackTiles}</Row>
-      <Row>
+      <Row className="ml-1">
         <Pagination
+          className="ml-auto"
           currentPage={pageData.page}
           totalPage={pageData.totalPage}
           url="hacklist"

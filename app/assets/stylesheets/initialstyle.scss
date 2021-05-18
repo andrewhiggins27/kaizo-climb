@@ -1,8 +1,18 @@
+$mario-blue: #2967d8;
+$mario-red: #ee135b;
+$mario-yellow: #ffffb3;
+$mario-white: #ffffff;
+
+@font-face {
+  font-family: 'MarioFont';
+  src:font-url("SuperMarioBros-ov7d.ttf") format('truetype');
+}
+
 .bg_primary-color {
-  background-color: #FFFFFF;
+  background-color: #2967d8;
 }
 .primary-color {
-  background-color: #FFFFFF;
+  background-color: #2967d8;
 }
 .bg_secondary-color {
   background-color: #293241;
@@ -69,4 +79,38 @@
 
 .completed-list {
   background-color: rgba(0, 255, 0, .2);
+}
+
+.hack-search-bar {
+  margin-bottom: 1rem;
+}
+
+.hack-list {
+  background-color: $mario-yellow;
+}
+
+body {
+  background-color: $mario-blue !important
+}
+
+a {
+ color: $mario-blue !important;
+}
+ 
+.nav-bar {
+  background-color: $mario-red
+}
+
+.hack-tile-image {
+  border-style: solid;
+  border-width: .15rem;
+}
+
+.navbar-title {
+  font-family: 'MarioFont';
+  font-size: 2rem !important;
+}
+
+.hack-list-title {
+  font-family: 'MarioFont';
 }

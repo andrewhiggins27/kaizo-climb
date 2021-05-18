@@ -48,13 +48,13 @@ const AddToListButton = (props) => {
 
   return (
     <>
-      <Dropdown className="add-to-journey-button">
-        <Dropdown.Toggle id="add-to-list-dropdown" variant="info">
+      <Dropdown className="add-to-journey-button" size="sm">
+        <Dropdown.Toggle id="add-to-list-dropdown" variant="outline" size="sm">
           Add To Journey
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          {props.lists.map((list) => (
-            <DropdownItem onClick={() => handleClick(list.id)}>
+          {props.lists.map((list, i) => (
+            <DropdownItem onClick={() => handleClick(list.id)} key={i}>
               {list.title}
             </DropdownItem>
           ))}
