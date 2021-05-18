@@ -51,7 +51,7 @@ const HackTile = (props) => {
 
   let positionControls = <> </>;
   let removeButton = <></>;
-  let completionCheck = <></>
+  let completionCheck = <></>;
 
   if (props.allowPositionChange) {
     if (props.position == 1) {
@@ -118,18 +118,24 @@ const HackTile = (props) => {
       </>
     );
 
-    completionCheck = <CompletionCheck completed={props.hackCompleted} handleCompletionCheck={props.handleCompletionCheck} hackId={props.hack.id}/>
+    completionCheck = (
+      <CompletionCheck
+        completed={props.hackCompleted}
+        handleCompletionCheck={props.handleCompletionCheck}
+        hackId={props.hack.id}
+      />
+    );
   }
 
   let addToListButton;
   if (props.allowAddToList) {
     addToListButton = (
       <div className="float-right">
-      <AddToListButton
-        user={props.user}
-        hackId={props.hack.id}
-        lists={props.lists}
-      />
+        <AddToListButton
+          user={props.user}
+          hackId={props.hack.id}
+          lists={props.lists}
+        />
       </div>
     );
   }
@@ -137,34 +143,38 @@ const HackTile = (props) => {
   return (
     <Col xs={12} md={6} lg={4} style={{ paddingBottom: ".5rem" }}>
       <Card>
-      <div className={props.hackCompleted ? "hack-tile-completed" : "hack-tile-incomplete"}>
-        <Card.Body>
-          {position}
-          {completionCheck}
-          {removeButton}
-          <Card.Title>
-            <Link to={`/hack/${props.hack.id}`}>{props.hack.name}</Link>
-          </Card.Title>
-          <Card.Subtitle>Created by: {creatorNames}</Card.Subtitle>
-          <Card.Subtitle style={{ paddingTop: ".5rem" }}>
-            {props.hack.length}
-          </Card.Subtitle>
-          <br></br>
-          <Button
-            onClick={() => setOpen(!open)}
-            aria-controls="description-card-text"
-            aria-expanded={open}
-            variant="dark"
-          >
-            Expand Description
-          </Button>
-          <Collapse in={open}>
-            <div id="description-card-text">{props.hack.description}</div>
-          </Collapse>
-        </Card.Body>
-        <ScreenshotCarousel screenshots={props.hack.screenshots} />
-        {positionControls}
-        {addToListButton}
+        <div
+          className={
+            props.hackCompleted ? "hack-tile-completed" : "hack-tile-incomplete"
+          }
+        >
+            <Card.Header>
+            <Card.Title>
+              <Link to={`/hack/${props.hack.id}`}>{props.hack.name}</Link>
+            </Card.Title>
+            </Card.Header>
+          <Card.Body>
+            {position}
+            {completionCheck}
+            {removeButton}
+            <Card.Subtitle style={{marginBottom: ".2rem"}}>Created by: {creatorNames}</Card.Subtitle>
+            <Card.Subtitle>{props.hack.length}</Card.Subtitle>
+            <Button
+              onClick={() => setOpen(!open)}
+              aria-controls="description-card-text"
+              aria-expanded={open}
+              variant="outline-secondary"
+              size="sm"
+            >
+              {open ? "Hide Description" : "Expand Description"}
+            </Button>
+            <Collapse in={open}>
+              <div id="description-card-text">{props.hack.description}</div>
+            </Collapse>
+          </Card.Body>
+          <ScreenshotCarousel screenshots={props.hack.screenshots} />
+          {positionControls}
+          {addToListButton}
         </div>
       </Card>
     </Col>

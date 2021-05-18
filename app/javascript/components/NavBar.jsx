@@ -70,8 +70,8 @@ const NavBar = (props) => {
   }
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="/">Kaizo Climb </Navbar.Brand>
+    <Navbar collapseOnSelect expand="lg" className="nav-bar">
+      <Navbar.Brand href="/" className="navbar-title">Kaizo Climb </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">{navLinks}</Nav>

@@ -12,7 +12,7 @@ const ScreenshotCarousel = (props) => {
         <Carousel.Item
           key={screenshot.id}
         >
-          <Card.Img src={screenshot.url}/>
+          <Card.Img className="hack-tile-image" src={screenshot.url}/>
         </Carousel.Item>
       )
     })
