@@ -175,7 +175,7 @@ const ListShow = (props) => {
     <>
       <Container>
         <div>
-          <h1>{data.list.title}</h1>
+          <h1 style={{fontFamily: "MarioFont"}}>{data.list.title}</h1>
           <Row className="justify-content-md-center">{hackTiles}</Row>
         </div>
         <Button href="/hacklist/1">Add Hacks to Journey</Button>

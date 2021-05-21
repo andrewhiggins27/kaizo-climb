@@ -96,7 +96,7 @@ const ListIndex = (props) => {
     <>
       <Container>
         <Row>
-          <h1>{props.user.username}'s Journeys</h1>
+          <h1 style={{fontFamily: "MarioFont"}}>{props.user.username}'s Journeys</h1>
         </Row>
         <Row>
         <Col>

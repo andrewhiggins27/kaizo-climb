@@ -1,4 +1,4 @@
-$mario-blue: #2967d8;
+$mario-blue: #5692ff;
 $mario-red: #ee135b;
 $mario-yellow: #ffffb3;
 $mario-white: #ffffff;
@@ -78,7 +78,7 @@ $mario-white: #ffffff;
 }
 
 .completed-list {
-  background-color: rgba(0, 255, 0, .2);
+  background-color: rgb(55, 214, 76);
 }
 
 .hack-search-bar {
@@ -86,7 +86,7 @@ $mario-white: #ffffff;
 }
 
 .hack-list {
-  background-color: $mario-yellow;
+  background-color: $mario-blue;
 }
 
 body {
@@ -94,7 +94,7 @@ body {
 }
 
 a {
- color: $mario-blue !important;
+ color: $mario-blue;
 }
  
 .nav-bar {
@@ -109,8 +109,34 @@ a {
 .navbar-title {
   font-family: 'MarioFont';
   font-size: 2rem !important;
+  color: #fff !important;
+}
+
+.navbar-links {
+  color: #fff !important
 }
 
 .hack-list-title {
   font-family: 'MarioFont';
+}
+
+.hack-tile-link {
+  color: $mario-blue;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.card-body {
+  padding-top: .3rem !important;
+}
+
+.position-number {
+  font-family: 'MarioFont';
+}
+
+.card-footer {
+  padding-bottom: 2rem !important;
+}
+
+.homepage {
+  background-color: $mario-blue;
 }
