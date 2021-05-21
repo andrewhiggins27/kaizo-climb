@@ -9,6 +9,8 @@ import Collapse from "react-bootstrap/Collapse";
 import Button from "react-bootstrap/Button";
 import ScreenshotCarousel from "./ScreenshotCarousel";
 import Modal from "react-bootstrap/Modal";
+import Row from "react-bootstrap/Row"
+import ReactTooltip from 'react-tooltip'
 
 import { BoxArrowRight, BoxArrowLeft, Trash } from "react-bootstrap-icons";
 import CompletionCheck from "./CompletionCheck";
@@ -36,7 +38,7 @@ const HackTile = (props) => {
 
   let position = <></>;
   if (props.position) {
-    position = <h1>{props.position}</h1>;
+    position = <h1 className="position-number">{props.position}</h1>;
   }
 
   const handlePositionChangeRight = (event) => {
@@ -60,7 +62,9 @@ const HackTile = (props) => {
           <BoxArrowRight
             onClick={handlePositionChangeRight}
             style={{ float: "right" }}
+            data-tip="Change position"
           />
+          <ReactTooltip/>
         </Card.Footer>
       );
     } else if (props.position === props.listLength) {
@@ -69,7 +73,9 @@ const HackTile = (props) => {
           <BoxArrowLeft
             onClick={handlePositionChangeLeft}
             style={{ float: "left" }}
+            data-tip="Change position"
           />
+          <ReactTooltip/>
         </Card.Footer>
       );
     } else {
@@ -78,11 +84,14 @@ const HackTile = (props) => {
           <BoxArrowLeft
             onClick={handlePositionChangeLeft}
             style={{ float: "left" }}
+            data-tip="Change position"
           />
           <BoxArrowRight
             onClick={handlePositionChangeRight}
             style={{ float: "right" }}
+            data-tip="Change position"
           />
+          <ReactTooltip/>
         </Card.Footer>
       );
     }
@@ -92,7 +101,9 @@ const HackTile = (props) => {
         <Trash
           onClick={handleDeleteConfirmShow}
           style={{ float: "right" }}
+          data-tip="Remove Hack"
         ></Trash>
+        <ReactTooltip/>
         <Modal
           show={deleteConfirmOpen}
           onHide={handleDeleteConfirmClose}
@@ -150,14 +161,16 @@ const HackTile = (props) => {
         >
             <Card.Header>
             <Card.Title>
-              <Link to={`/hack/${props.hack.id}`}>{props.hack.name}</Link>
+              <Link className="hack-tile-link" to={`/hack/${props.hack.id}`}>{props.hack.name}</Link>
             </Card.Title>
             </Card.Header>
           <Card.Body>
+          <Row className="ml-1">
             {position}
             {completionCheck}
+          </Row>
             {removeButton}
-            <Card.Subtitle style={{marginBottom: ".2rem"}}>Created by: {creatorNames}</Card.Subtitle>
+            <Card.Subtitle style={{marginBottom: ".2rem", marginTop: ".2rem"}}>Created by: {creatorNames}</Card.Subtitle>
             <Card.Subtitle>{props.hack.length}</Card.Subtitle>
             <Button
               onClick={() => setOpen(!open)}

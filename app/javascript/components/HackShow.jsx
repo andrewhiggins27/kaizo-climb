@@ -1,4 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
+
+import AddToListButton from "./AddToListButton";
+
 import Container from "react-bootstrap/Container";
 import ScreenshotCarousel from "./ScreenshotCarousel";
 import Button from "react-bootstrap/Button";
@@ -13,13 +16,14 @@ import smwIcon from "../../assets/images/smwc32logo.jpeg";
 const HackShow = (props) => {
   const [hack, setHack] = useState({});
   const [open, setOpen] = useState(false);
+  const [userLists, setUserLists] = useState([])
 
   let creators;
   if (hack.creators) {
     creators = hack.creators.map((creator, i) => {
       return (
-        <a href={`/creators/${creator.id}`}>
-          <Fragment key={i}>{creator.name}</Fragment>
+        <a key={i} href={`/creators/${creator.id}`}>
+          <Fragment>{creator.name}</Fragment>
         </a>
       );
     });
@@ -46,9 +50,33 @@ const HackShow = (props) => {
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, [props.match.params.id]);
 
+  useEffect(() => {
+    if (props.user.id !== undefined) {
+      let userId = props.user.id;
+
+      fetch(`/api/v1/users/${userId}/lists`, {
+        credentials: "same-origin",
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then((response) => response.json())
+        .then((body) => {
+          setUserLists(body.lists);
+        })
+        .catch((error) => console.error(`Error in fetch: ${error.message}`));
+    }
+  }, [props.user]);
+
   return (
     <Container>
-      <Card>
+      <Card className="hack-show">
         <Card.Body>
           <Card.Header>
             <Row>
@@ -86,9 +114,15 @@ const HackShow = (props) => {
             </div>
           </Collapse>
           <ScreenshotCarousel screenshots={hack.screenshots} />
+          <div className="float-right">
+            <AddToListButton
+              user={props.user}
+              hackId={hack.id}
+              lists={userLists}
+            />
+          </div>
         </Card.Body>
       </Card>
-      <a href="javascript:history.back()">Back</a>
     </Container>
   );
 };

@@ -111,7 +111,11 @@ class App extends Component {
                 path="/:userId/journeys/:listId"
                 exact
                 render={(props) => (
-                  <ListShow {...props} user={this.state.user} handleLogin={this.handleLogin} />
+                  <ListShow
+                    {...props}
+                    user={this.state.user}
+                    handleLogin={this.handleLogin}
+                  />
                 )}
               />
               <Route
@@ -121,7 +125,13 @@ class App extends Component {
                   <HackList {...props} user={this.state.user} />
                 )}
               />
-              <Route path="/hack/:id" exact component={HackShow} />
+              <Route
+                path="/hack/:id"
+                exact
+                render={(props) => (
+                  <HackShow {...props} user={this.state.user} />
+                )}
+              />
               <Route
                 path="/creators/:id"
                 exact

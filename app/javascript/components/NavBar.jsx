@@ -31,7 +31,7 @@ const NavBar = (props) => {
   const sessionLinks =
     props.loggedInStatus === "LOGGED_IN" ? (
       <>
-        <NavDropdown title={props.user.username} id="collasible-nav-dropdown">
+        <NavDropdown className="navbar-links" title={props.user.username} id="collasible-nav-dropdown">
           <NavDropdown.Item href="">Profile</NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogoutClick}>
             Logout
@@ -40,14 +40,14 @@ const NavBar = (props) => {
       </>
     ) : (
       <>
-        <Nav.Link href="/login">Log In</Nav.Link>{" "}
-        <Nav.Link href="/signup">Sign Up</Nav.Link>
+        <Nav.Link className="navbar-links" href="/login">Log In</Nav.Link>{" "}
+        <Nav.Link className="navbar-links" href="/signup">Sign Up</Nav.Link>
       </>
     );
 
   <NavDropdown title={props.user.username} id="collasible-nav-dropdown">
-    <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-    <NavDropdown.Item onClick={handleLogoutClick}>Logout</NavDropdown.Item>
+    <NavDropdown.Item className="navbar-links" href="#action/3.1">Profile</NavDropdown.Item>
+    <NavDropdown.Item className="navbar-links" onClick={handleLogoutClick}>Logout</NavDropdown.Item>
   </NavDropdown>;
 
   let navLinks;
@@ -55,8 +55,8 @@ const NavBar = (props) => {
   if (props.user.id) {
     navLinks = (
       <>
-        <Nav.Link href="/hacklist/1">Browse All Kaizo Hacks</Nav.Link>
-        <Nav.Link href={`/${props.user.id}/journeys`}>
+        <Nav.Link className="navbar-links" href="/hacklist/1">Browse All Kaizo Hacks</Nav.Link>
+        <Nav.Link className="navbar-links" href={`/${props.user.id}/journeys`}>
           View My Journeys
         </Nav.Link>
       </>
@@ -64,7 +64,7 @@ const NavBar = (props) => {
   } else {
     navLinks = (
       <>
-        <Nav.Link href="/hacklist/1">Browse All Kaizo Hacks</Nav.Link>
+        <Nav.Link className="navbar-links" href="/hacklist/1">Browse All Kaizo Hacks</Nav.Link>
       </>
     );
   }

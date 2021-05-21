@@ -9,10 +9,10 @@ const CompletionCheck = (props) => {
   }
 
   return (
-    <Form>
+    <Form className="ml-auto mr-3">
       <Form.Check
         checked={props.completed}
-        label={"Hack beaten?"}
+        label={"I Beat This!"}
         onChange={handleChange}
       >
       </Form.Check>

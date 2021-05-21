@@ -21,7 +21,7 @@ const ListTile = (props) => {
     <>
       <Trash
         onClick={handleDeleteConfirmShow}
-        style={{ float: "right" }}
+        style={{ float: "right", margin: ".3rem" }}
       ></Trash>
       <Modal
         show={deleteConfirmOpen}
